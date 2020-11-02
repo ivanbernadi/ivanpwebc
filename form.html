@@ -1,0 +1,75 @@
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<style>
+    .label {
+        float: left; 
+        width: 150px; 
+    }
+    .infobox {
+        width: 150px; 
+    }
+    .error { 
+        color: red; 
+        padding-left: 10px; 
+    }
+    .submit { 
+        margin-left: 100px; 
+        margin-top: 20px;
+        font-size:1em;
+        background-color:yellow;
+        color:black;
+    }
+    option{
+        background-color:blue;
+        color:white;
+    }
+    .meal{
+    background-color:red;
+    color:black;
+    }
+</style>  
+</head>
+
+    <script>
+        $(document).ready(function() {
+
+            $('.error').hide(); //menyembunyikan label error
+            $('option:odd').addClass('meal'); //menerapkan style .meal ke pilihan bernomer ganjil 
+            $('.submit').click(function(event){ //lakukan jika tombol class css dengan nama submit di klik
+                var selectedopts=""; // variabel pilihan yang dipilih
+                var count=$('select option:selected').val(); // 
+                if(count==0)
+            {
+            $('p.result').hide(); //menyembunyikan label result
+            $('.error').show(); //menunjukan label error
+            }
+        else
+{
+            $('select option:selected').each(function(){ //
+            selectedopts+=$(this).text()+","; //
+});
+            $('.error').hide(); //menyembunyikan label error
+            $('p.result').show(); //menunjukan label hasil
+            $('p.result').text('Kamu telah memilih '+ selectedopts); // menunjukan label hasil "Kamu telah memilih + pilihan kopi"
+}
+event.preventDefault();
+});
+});
+</script>
+<body>
+    <form>
+        <span class="label">Pilih kopi yang diinginkan </span>
+        <select id="food" class="infobox" MULTIPLE>
+        <option value="Americano $3">Americano $3</option>
+        <option value="Cappucino $6">Cappucino $6</option>
+        <option value="Mocchacino $7">Mocchacino $7</option>
+        <option value="Coffeemilk $8">Coffeemilk $7</option>
+        <option value="Vietnamdrip $9">Vietnamdrip $9</option>
+        </select>
+        <p class="error">Kamu belum memilih pilihan  </p>
+        <p class="result"></p>
+        <input class="submit" type="submit" value="Submit" >
+        </form>
+</body>
